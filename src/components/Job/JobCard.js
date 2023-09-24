@@ -38,7 +38,7 @@ const useStyle = makeStyles(() => ({
 const JobCard = (props) => {
   const classes = useStyle();
   return (
-    <Box p={2} className={classes.wrapper}>
+    <Box m={.5} p={2} className={classes.wrapper}>
       <Grid container alignItems="center">
         <Grid item xs>
           <Typography variant="subtitle1">{props.title}</Typography>
