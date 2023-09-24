@@ -196,22 +196,24 @@ const NewJobModal = (props) => {
               rows={4}
             />
           </Grid>
+          <Grid item container xs={12}>
+            <Grid item xs={12}>
+              <Typography>Skills *</Typography>
+            </Grid>
+            <Grid item container xs={12}>
+              {skills.map((skill) => (
+                <Grid
+                  onClick={() => addRemoveSkills(skill)}
+                  key={skill}
+                  className={`${classes.skillChip} ${
+                    jobDetails.skills.includes(skill) && classes.included
+                  }`}>
+                  {skill}
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
-        <Box mt={2}>
-          <Typography>Skills *</Typography>
-          <Box display="flex">
-            {skills.map((skill) => (
-              <Box
-                onClick={() => addRemoveSkills(skill)}
-                key={skill}
-                className={`${classes.skillChip} ${
-                  jobDetails.skills.includes(skill) && classes.included
-                }`}>
-                {skill}
-              </Box>
-            ))}
-          </Box>
-        </Box>
       </DialogContent>
       <DialogActions>
         <Box
