@@ -1,10 +1,9 @@
 import { Button, Grid, Typography } from "@mui/material";
-// import { makeStyles } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import React from "react";
 import theme from "../../theme/theme";
-import { differenceInMinutes } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 const useStyle = makeStyles(() => ({
   wrapper: {
@@ -38,7 +37,7 @@ const useStyle = makeStyles(() => ({
 const JobCard = (props) => {
   const classes = useStyle();
   return (
-    <Box m={.5} p={2} className={classes.wrapper}>
+    <Box m={0.5} p={2} className={classes.wrapper}>
       <Grid container alignItems="center">
         <Grid item xs>
           <Typography variant="subtitle1">{props.title}</Typography>
@@ -65,7 +64,8 @@ const JobCard = (props) => {
         <Grid item container direction="column" alignItems="flex-end" xs>
           <Grid item>
             <Typography variant="caption">
-              {differenceInMinutes(Date.now(), props.postedOn)} min ago|{" "}
+              {/* {differenceInMinutes(Date.now(), props.postedOn)} */}
+              {formatDistanceToNow(props.postedOn, { addSuffix: true })} |{" "}
               {props.type} | {props.location}
             </Typography>
           </Grid>
