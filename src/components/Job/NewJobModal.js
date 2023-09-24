@@ -54,6 +54,7 @@ const initState = {
 const NewJobModal = (props) => {
   const [jobDetails, setJobDetails] = useState(initState);
   const [loading, setLoading] = useState(false);
+  const [requiredField, setRequiredField] = useState(false);
 
   const handleChange = (e) => {
     // e.persist();
@@ -65,9 +66,15 @@ const NewJobModal = (props) => {
 
   const handleSubmit = async () => {
     for (const field in jobDetails) {
-      if (typeof jobDetails[field] === "string" && !jobDetails[field]) return;
+      if (typeof jobDetails[field] === "string" && !jobDetails[field]) {
+        setRequiredField(true);
+        return;
+      }
     }
-    if (!jobDetails.skills.length) return;
+    if (!jobDetails.skills.length) {
+      setRequiredField(true);
+      return;
+    }
     setLoading(true);
     await props.postJob(jobDetails);
     closeModal();
@@ -76,6 +83,7 @@ const NewJobModal = (props) => {
   const closeModal = () => {
     setJobDetails(initState);
     setLoading(false);
+    setRequiredField(false);
     props.closeJobModal();
   };
 
@@ -222,7 +230,9 @@ const NewJobModal = (props) => {
           width="100%"
           display="flex"
           justifyContent="space-between">
-          <Typography variant="contained">* Required fields</Typography>
+          <Typography variant="contained">
+            {requiredField ? "* Required fields" : ""}
+          </Typography>
           <Button
             onClick={handleSubmit}
             disabled={loading}
