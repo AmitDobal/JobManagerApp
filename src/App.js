@@ -95,8 +95,10 @@ function App() {
       <ViewJobModal job={viewJob} closeJobModal={() => setViewJob({})} />
       <Box mb={3}>
         <Grid container justifyContent="center">
-          <Grid item xs={10}>
+          <Grid item xs={11}>
             <SearchBar fetchJobsCustom={fetchJobsCustom} />
+          </Grid>
+          <Grid item xs={10}>
             {loading ? (
               <Box display="flex" justifyContent="center">
                 <CircularProgress />
@@ -118,7 +120,7 @@ function App() {
               </>
             )}
           </Grid>
-        </Grid>{" "}
+        </Grid>
       </Box>
     </ThemeProvider>
   );

@@ -41,7 +41,7 @@ const SearchBar = (props) => {
 
   return (
     <Box p={2} mt={-5} mb={2} className={classes.wrapper}>
-      <Select
+      <Select 
         variant="filled"
         value={jobSearch.type}
         onChange={handleChange}
